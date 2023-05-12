@@ -1,95 +1,47 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import ExcelJS from "exceljs";
+
+// const workbook = new ExcelJS.Workbook();
+
+// workbook.xlsx
+//   .readFile("https://1drv.ms/x/s!AhKKtEOzNaefkn-SBTQe9jVSGmIg?e=glBGyJ")
+//   .then(function () {
+//     console.log("first");
+//     const worksheet = workbook.getWorksheet("BOD-VLO.");
+//     worksheet.getCell("A1").value = "Nuevo valor";
+//     return workbook.xlsx.writeFile(
+//       "https://1drv.ms/x/s!AhKKtEOzNaefkn-SBTQe9jVSGmIg?e=glBGyJ"
+//     );
+//   })
+//   .then(function () {
+//     console.log("Archivo modificado con éxito");
+// 	});
 
 export default function Home() {
+  const wdHideGridlines = "wdHideGridlines=True";
+  const wdHideHeaders = "wdHideHeaders=True";
+  const wdHideSheetTabs = "wdHideSheetTabs=True";
+  const wdAllowInteractivity = "wdAllowInteractivity=True";
+  const allowTyping = "AllowTyping=False";
+  const itemtoShow = "Item=cierreVuelos";
+  const wdbipreview = "wdbipreview=False";
+  const excelSrc = `https://onedrive.live.com/embed?resid=9FA735B343B48A12%212431&authkey=%21AJqJWmtPHa8CBCo&em=2&ActiveCell='BOD-VLO.'!B10&wdInConfigurator=True&edesNext=false&resen=true&ed1JS=false&${wdHideGridlines}&${wdHideHeaders}&${wdHideSheetTabs}&${itemtoShow}&${wdAllowInteractivity}&${allowTyping}&${wdbipreview}`;
+  // excelSrc.concat("&action=embedview"); //para presentar el libro como un libro incrustado
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        paddingTop: "20px",
+      }}
+    >
+      <h1 style={{ textAlign: "center" }}>Resumen de vuelos</h1>
+      <div style={{ padding: 30 }}>
+        <iframe
+          style={{ width: "100%", height: "470px" }}
+          src={excelSrc}
+        ></iframe>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </div>
+  );
 }
