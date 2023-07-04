@@ -26,7 +26,7 @@ ChartJS.register(
 );
 
 export default function Bars() {
-  const options = {
+  const options: any = {
     responsive: true,
     animation: false,
     plugins: {
